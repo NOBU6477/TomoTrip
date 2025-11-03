@@ -1,0 +1,66 @@
+プロジェクト: TomoTrip（旅友）ガイド募集LP v2
+目的: 「動画 → LP → LINE登録」の導線でCVR最大化。セグメントタブ（学生/夜職/観光事業者）付き。
+
+【最重要】
+- モバイル最適化（Lighthouse 90+）
+- 1ページ構成（index.html / styles.css / main.js）
+- 既存v1がある場合はバックアップ後にv2で置換（/backup_v1_YYYYMMDDに退避）
+
+【コア要件】
+- 主要CTA: 「LINEで1分登録」 → `https://lin.ee/yourline`（後で差替え）
+- 動画モーダル(YouTube)仮URL: `https://www.youtube.com/embed/dQw4w9WgXcQ`
+- /assets/images/ にダミー画像（hero.jpg, step1.svg, step2.svg, step3.svg, og.jpg）
+- data-i18n属性で後から多言語切替可能（初期は日本語）
+- OGP/Twitterカード/manifest/ファビコン/構造化データ(JSON-LD: WebSite/Organization/FAQPage)
+- アクセシビリティ: aria/コントラスト/skip link/キーボード操作
+- 追従CTA（スマホ下部固定バーに「LINE登録」）
+
+【セクション構成（文言はこのまま仮で実装）】
+1) ヒーロー
+  - h1(data-i18n="hero.title"): あなたの街が“仕事場”になる。
+  - p(data-i18n="hero.subtitle"): TomoTrip（旅友）— 地元ガイドで、好きな時間に収入を。
+  - CTA主(a.btn-primary): LINEで1分登録 → 上記URL
+  - CTA副(button.btn-ghost): 仕組みを30秒で見る → モーダル
+  - small(data-i18n="hero.badges"): 学生・夜職・観光関連の副業に◎ / 登録無料
+2) ベネフィット(3つ)
+  - 自由な働き方 / 地元の知識が価値に / 地域に貢献
+3) 使い方(3ステップ)
+  - LINEで登録 → プラン作成 → 予約が入る
+4) セグメント別タブ（学生向け／夜職向け／観光事業者向け）
+  - タブUI: role="tablist" / role="tab" / role="tabpanel"
+  - URLクエリ `?audience=student|night|pro` と #audience= でも初期選択可
+  - 切替時に `history.replaceState` でURL更新
+  - 各パネルにミニFAQ(1つ以上)
+  - 計測フック: `window.ttTrack('audience_view', {audience})`
+5) 報酬 & 安心
+  - 目安: ¥3,000/1h〜 / 本人確認 / レビュー / ガイドライン / 清算はアプリ管理
+6) 先行モニター募集
+  - 先着100名: 登録完了で¥3,000特典 / 協賛店紹介で¥5,000/件
+7) FAQ(3つ)
+  - 未経験でも？ / 時間の縛り？ / 英語できなくても？
+8) フッター
+  - 会社情報/規約/プライバシー/SNS（ダミー） / © TomoTrip
+
+【HTML/CSS/JS具体】
+- index.html / styles.css / main.js を新規または更新
+- CSS: 白基調＋アクセント #00A3C4、余白広め、フォント可読性重視、ボタンは:focus/:active明示
+- 画像は loading="lazy"、aspect-ratio活用、CLS回避
+- スマホ下部固定バー（追従CTA）に「LINEで1分登録」
+- main.js:
+  - 動画モーダル開閉（閉じたら再生停止）
+  - タブ切替：.tab/.tab--active 切替、tabpanel hidden制御
+  - URLパラメータ/ハッシュ読み取りで初期タブ選択
+  - `window.setAudience(aud)` と `window.ttTrack = window.ttTrack || function(){}` を用意
+  - 将来の i18n 用に `window.setLang(lang)` の空実装（data-i18n適用の土台だけ）
+- アクセシビリティ：
+  - role属性、aria-selected、キーボード操作（左右矢印でtab移動できると尚良）
+- OGP/Twitter/JSON-LD/manifest/ファビコン を最低限セット（ダミー値OK、コメントで差し替え箇所明示）
+
+【検証】
+- 360px幅で崩れなし / CTAタップ領域44px以上
+- Lighthouse (Performance/Accessibility/Best Practices/SEO) 各90+目標
+
+【差し替えTODOのコメント】
+- LINE URL / ヒーロー＆OG画像 / YouTube URL / ロゴ / 特典金額 / 会社情報URL
+
+以上で v2 を作成・保存・実行（Preview）まで行ってください。
