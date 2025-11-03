@@ -1,0 +1,26 @@
+run = ["bash", "-lc", "npm run dev"]
+
+[nix]
+channel = "stable-24_05"
+
+[env]
+PORT = "5173"
+
+[[ports]]
+localPort = 5173
+externalPort = 80
+
+[workflows]
+runButton = "Start dev server"
+
+[[workflows.workflow]]
+name = "Start dev server"
+task = "shell.exec"
+args = "npm run dev"
+waitForPort = 5173
+
+[[workflows.workflow]]
+name = "Build & serve dist"
+task = "shell.exec"
+args = "npm run build && python3 -m http.server 5000 -d dist/public"
+waitForPort = 5000
