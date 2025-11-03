@@ -1,0 +1,84 @@
+You are Replit Agent. Please repair and standardize this project so it runs cleanly in two modes (Dev and Build/Serve) on Replit. Assume this is a Vite + Tailwind + PostCSS frontend (Node.js). Make changes idempotent and explain what you changed.
+
+GOALS
+1) Dev mode (default Run button): start Vite dev server on port 5173.
+2) Build/Serve mode: run `npm run build` then serve the `dist/` directory on port 5000 using Python’s http.server.
+3) Remove Python-first Nix settings; install Node.js 20 in Nix.
+4) Ensure package.json scripts exist and work: dev/build/preview.
+5) Make Run button visible and add two workflows (“Start dev server”, “Build & serve dist”).
+6) Keep all changes minimal and reversible; show a summary.
+
+STEPS
+
+A) Detect framework
+- If `vite.config.*` or `node_modules/vite` exists, continue.
+- If Vite is missing, add it as a dev dependency and initialize minimal config (but only if absent).
+
+B) Nix environment
+- Replace the entire contents of `replit.nix` with EXACTLY:
+{ pkgs }:
+{
+  deps = [
+    pkgs.nodejs_20
+  ];
+}
+- Do NOT include python packages here.
+
+C) package.json scripts
+- Ensure `package.json` has (create or merge safely):
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 5173"
+  }
+- Do not remove other existing scripts.
+- If vite/postcss/tailwind/autoprefixer are referenced but not installed, run:
+  npm i -D vite
+  npm i -D tailwindcss postcss autoprefixer  --if-present
+- Always run `npm install` once after modifications.
+
+D) Run button & workflows (.replit)
+- Replace `.replit` with the following TOML (preserve no other previous fields):
+run = ["bash", "-lc", "npm run dev"]
+
+[nix]
+channel = "stable-24_05"
+
+[env]
+PORT = "5173"
+
+[[ports]]
+localPort = 5173
+externalPort = 80
+
+[workflows]
+runButton = "Start dev server"
+
+[[workflows.workflow]]
+name = "Start dev server"
+task = "shell.exec"
+args = "npm run dev"
+waitForPort = 5173
+
+[[workflows.workflow]]
+name = "Build & serve dist"
+task = "shell.exec"
+args = "npm run build && python3 -m http.server 5000 -d dist"
+waitForPort = 5000
+
+E) Housekeeping
+- Add/update `.gitignore` to include:
+  node_modules
+  dist
+  .cache
+- Ensure `index.html` points to `main.js|main.ts` correctly (no broken path).
+- If Tailwind is configured, confirm `postcss.config.js` and `tailwind.config.*` exist; otherwise leave untouched.
+
+F) Verify
+- Run `npm install` (once).
+- Start the default Run (should open dev server on port 5173).
+- Execute the workflow “Build & serve dist” and confirm it serves `dist` on port 5000.
+- If ports collide, update the `.replit` ports accordingly and re-run.
+
+G) Output
+- Print a concise summary of files changed, commands executed, and where to click (“Run” for dev, “Workflows → Build & serve dist” for static).
