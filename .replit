@@ -1,27 +1,26 @@
-# --- Runtime / Run button ---
-run = ["bash", "-lc", "python3 -m http.server $PORT"]
+run = ["bash", "-lc", "npm run dev"]
 
-# --- Nix channel (これがないとNixがビルドされません) ---
 [nix]
 channel = "stable-24_05"
 
-# --- ポート設定（プレビューのために5000を使う想定） ---
 [env]
-PORT = "5000"
+PORT = "5173"
 
 [[ports]]
-localPort = 5000
+localPort = 5173
 externalPort = 80
 
-# --- Runボタンのラベル（任意） ---
 [workflows]
-runButton = "Start server"
+runButton = "Start dev server"
 
 [[workflows.workflow]]
-name = "Start server"
-author = "nobu"
-
-[[workflows.workflow.tasks]]
+name = "Start dev server"
 task = "shell.exec"
-args = "python3 -m http.server $PORT"
+args = "npm run dev"
+waitForPort = 5173
+
+[[workflows.workflow]]
+name = "Build & serve dist"
+task = "shell.exec"
+args = "npm run build && python3 -m http.server 5000 -d dist/public"
 waitForPort = 5000
