@@ -545,7 +545,7 @@
             <svg class="campaign-badge__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 2l2.09 6.44h6.77l-5.48 3.98 2.09 6.44L10 14.88l-5.47 3.98 2.09-6.44-5.48-3.98h6.77L10 2z" fill="currentColor"/>
             </svg>
-            先着100名限定
+            先着50名限定
           </div>
           
           <h2 class="campaign-title" data-i18n="campaign.title" data-testid="text-campaign-title">
@@ -558,45 +558,68 @@
           </p>
           
           <div class="campaign-benefits">
-            <div class="campaign-benefit" data-testid="card-bonus-1">
-              <div class="campaign-benefit__icon">💰</div>
+            <div class="campaign-benefit campaign-benefit--guide" data-testid="card-bonus-1">
+              <div class="campaign-benefit__icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
               <div class="campaign-benefit__content">
                 <div class="campaign-benefit__title" data-i18n="campaign.bonus1.title">
-                  登録完了で
+                  初回ガイド完了で
                 </div>
-                <!-- TODO: Update bonus amount -->
                 <div class="campaign-benefit__amount" data-testid="text-bonus-amount-1">¥3,000</div>
                 <div class="campaign-benefit__subtitle" data-i18n="campaign.bonus1.subtitle">
                   ボーナス進呈
                 </div>
+                <p class="campaign-benefit__detail">
+                  観光客とマッチングして案内が終了した段階でお支払い<span class="campaign-benefit__note">※条件あり</span>
+                </p>
               </div>
             </div>
             
-            <div class="campaign-benefit" data-testid="card-bonus-2">
-              <div class="campaign-benefit__icon">🎁</div>
+            <div class="campaign-benefit campaign-benefit--sponsor" data-testid="card-bonus-2">
+              <div class="campaign-benefit__icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <line x1="12" y1="22.08" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
               <div class="campaign-benefit__content">
                 <div class="campaign-benefit__title" data-i18n="campaign.bonus2.title">
                   協賛店紹介で
                 </div>
-                <!-- TODO: Update referral bonus amount -->
-                <div class="campaign-benefit__amount" data-testid="text-bonus-amount-2">¥5,000/件</div>
+                <div class="campaign-benefit__amount campaign-benefit__amount--small" data-testid="text-bonus-amount-2">¥5,000/月</div>
                 <div class="campaign-benefit__subtitle" data-i18n="campaign.bonus2.subtitle">
-                  追加報酬
+                  永続配当収入
                 </div>
+                <p class="campaign-benefit__detail">
+                  紹介した協賛店の広告費が発生した月の翌日から配当開始。店舗が継続している限り<strong>永続的に</strong>配当が入り続けます。<br>
+                  <span class="campaign-benefit__highlight">最大100店舗/ガイドまで可能</span><br>
+                  <span class="campaign-benefit__example">例：¥5,000 × 100店舗 = <strong>¥50,000/月</strong></span>
+                </p>
+                <p class="campaign-benefit__rank">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  貢献度に応じてランクアップ！活躍次第でさらなる特典も
+                </p>
               </div>
             </div>
           </div>
           
-          <!-- TODO: Replace with actual LINE URL -->
           <a href="https://lin.ee/yourline" class="btn btn--primary btn--large btn--campaign" data-i18n="cta.line" data-testid="button-line-register-campaign" target="_blank" rel="noopener noreferrer">
             <svg class="btn__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" fill="currentColor"/>
             </svg>
-            今すぐ無料で登録する
+            LINEで1分登録
           </a>
           
           <p class="campaign-note" data-i18n="campaign.note">
-            ※特典は先着100名様限定です。定員に達し次第、予告なく終了いたします。
+            ※特典は先着50名様限定です。定員に達し次第、予告なく終了いたします。<br>
+            ※各特典には条件があります。詳細は登録後にご確認ください。
           </p>
         </div>
       </div>
