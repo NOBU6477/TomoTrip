@@ -145,6 +145,17 @@
     openLineModalBtn.addEventListener('click', openLineModal);
   }
 
+  // Add event listeners to all buttons with 'open-line-modal' class
+  document.querySelectorAll('.open-line-modal').forEach(btn => {
+    btn.addEventListener('click', function() {
+      openLineModal();
+      
+      // Track which button opened the modal
+      const source = this.getAttribute('data-testid') || 'unknown';
+      window.ttTrack('line_modal_open', { source: source });
+    });
+  });
+
   if (closeLineModalBtn) {
     closeLineModalBtn.addEventListener('click', closeLineModal);
   }
