@@ -9,6 +9,7 @@ PORT = "5173"
 [[ports]]
 localPort = 5173
 externalPort = 80
+exposeLocalhost = true
 
 [deployment]
 run = ["sh", "-c", "npm run build && npm run start"]
