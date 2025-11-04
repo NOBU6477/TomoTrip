@@ -231,9 +231,23 @@ body {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
+.hero__title-logo {
+  height: 2.5rem;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.75rem;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
 @media (min-width: 768px) {
   .hero__title {
     font-size: 4rem;
+  }
+  
+  .hero__title-logo {
+    height: 4rem;
+    margin-right: 1rem;
   }
 }
 
