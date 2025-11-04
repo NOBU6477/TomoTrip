@@ -9,8 +9,8 @@
     "preview": "vite preview --port 5173",
     "serve": "npm run build && python3 -m http.server 5000 -d dist/public",
     "check": "tsc"
-  }
-  "dependencies": {
+    },
+    "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "@jridgewell/trace-mapping": "^0.3.25",
     "@neondatabase/serverless": "^0.10.4",
