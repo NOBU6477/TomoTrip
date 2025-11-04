@@ -31,75 +31,177 @@
   };
 
   // ===================================================================
-  // VIDEO MODAL
+  // LINE REGISTRATION MODAL
+  // ===================================================================
+  const lineModal = document.getElementById('lineModal');
+  const openLineModalBtn = document.getElementById('openLineModalBtn');
+  const closeLineModalBtn = document.getElementById('closeLineModal');
+  const lineModalOverlay = document.getElementById('lineModalOverlay');
+
+  function openLineModal() {
+    if (!lineModal) return;
+    lineModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    closeLineModalBtn?.focus();
+    
+    window.ttTrack('line_modal_open', { source: 'hero_button' });
+  }
+
+  function closeLineModal() {
+    if (!lineModal) return;
+    lineModal.classList.remove('active');
+    document.body.style.overflow = '';
+    openLineModalBtn?.focus();
+    
+    window.ttTrack('line_modal_close', {});
+  }
+
+  if (openLineModalBtn) {
+    openLineModalBtn.addEventListener('click', openLineModal);
+  }
+
+  if (closeLineModalBtn) {
+    closeLineModalBtn.addEventListener('click', closeLineModal);
+  }
+
+  if (lineModalOverlay) {
+    lineModalOverlay.addEventListener('click', closeLineModal);
+  }
+
+  // Track LINE registration type selection
+  document.querySelectorAll('#lineModal .option-card').forEach(card => {
+    card.addEventListener('click', function() {
+      const type = this.classList.contains('option-card--guide') ? 'guide' :
+                   this.classList.contains('option-card--tourist') ? 'tourist' : 'sponsor';
+      window.ttTrack('line_registration_click', {
+        registration_type: type,
+        destination_url: this.href
+      });
+    });
+  });
+
+  // ===================================================================
+  // VIDEO SELECTION MODAL
   // ===================================================================
   const videoModal = document.getElementById('videoModal');
-  const videoIframe = document.getElementById('videoIframe');
-  const openVideoBtn = document.getElementById('openVideoBtn');
-  const closeVideoBtn = document.getElementById('closeVideoBtn');
-  const modalOverlay = document.getElementById('modalOverlay');
+  const openVideoModalBtn = document.getElementById('openVideoModalBtn');
+  const closeVideoModalBtn = document.getElementById('closeVideoModal');
+  const videoModalOverlay = document.getElementById('videoModalOverlay');
 
   function openVideoModal() {
-    if (!videoModal || !videoIframe) return;
-    
-    // Load video source (lazy loading)
-    const videoSrc = videoIframe.getAttribute('data-src');
-    if (videoSrc && !videoIframe.src) {
-      videoIframe.src = videoSrc;
-    }
-    
+    if (!videoModal) return;
     videoModal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scroll
+    document.body.style.overflow = 'hidden';
+    closeVideoModalBtn?.focus();
     
-    // Track video open event
-    window.ttTrack('video_open', {
-      video_url: videoSrc,
-      source: 'hero_button'
-    });
-    
-    // Focus trap
-    closeVideoBtn?.focus();
+    window.ttTrack('video_selection_modal_open', { source: 'hero_button' });
   }
 
   function closeVideoModal() {
-    if (!videoModal || !videoIframe) return;
-    
+    if (!videoModal) return;
     videoModal.classList.remove('active');
-    document.body.style.overflow = ''; // Restore scroll
+    document.body.style.overflow = '';
+    openVideoModalBtn?.focus();
     
-    // Stop video playback
-    const iframeSrc = videoIframe.src;
-    if (iframeSrc) {
-      videoIframe.src = '';
-      setTimeout(() => {
-        videoIframe.src = iframeSrc;
-      }, 100);
+    window.ttTrack('video_selection_modal_close', {});
+  }
+
+  if (openVideoModalBtn) {
+    openVideoModalBtn.addEventListener('click', openVideoModal);
+  }
+
+  if (closeVideoModalBtn) {
+    closeVideoModalBtn.addEventListener('click', closeVideoModal);
+  }
+
+  if (videoModalOverlay) {
+    videoModalOverlay.addEventListener('click', closeVideoModal);
+  }
+
+  // ===================================================================
+  // VIDEO PLAYER MODAL
+  // ===================================================================
+  const videoPlayerModal = document.getElementById('videoPlayerModal');
+  const closeVideoPlayerBtn = document.getElementById('closeVideoPlayer');
+  const videoPlayerOverlay = document.getElementById('videoPlayerOverlay');
+  const videoContainer = document.getElementById('videoContainer');
+
+  // Video URLs - TODO: Replace with actual video URLs
+  const videoUrls = {
+    guide: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    tourist: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    sponsor: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+  };
+
+  function openVideoPlayer(videoType) {
+    if (!videoPlayerModal || !videoContainer) return;
+    
+    const videoUrl = videoUrls[videoType];
+    if (!videoUrl) return;
+    
+    // Create iframe for video
+    videoContainer.innerHTML = `
+      <iframe 
+        src="${videoUrl}?autoplay=1" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen
+        title="${videoType} video"
+      ></iframe>
+    `;
+    
+    videoPlayerModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    closeVideoPlayerBtn?.focus();
+    
+    // Close video selection modal
+    if (videoModal) {
+      videoModal.classList.remove('active');
     }
     
-    // Track video close event
-    window.ttTrack('video_close', {});
+    window.ttTrack('video_play', {
+      video_type: videoType,
+      video_url: videoUrl
+    });
+  }
+
+  function closeVideoPlayer() {
+    if (!videoPlayerModal || !videoContainer) return;
     
-    // Return focus to open button
-    openVideoBtn?.focus();
+    videoPlayerModal.classList.remove('active');
+    document.body.style.overflow = '';
+    
+    // Stop video playback
+    videoContainer.innerHTML = '';
+    
+    window.ttTrack('video_close', {});
   }
 
-  // Event listeners for video modal
-  if (openVideoBtn) {
-    openVideoBtn.addEventListener('click', openVideoModal);
+  if (closeVideoPlayerBtn) {
+    closeVideoPlayerBtn.addEventListener('click', closeVideoPlayer);
   }
 
-  if (closeVideoBtn) {
-    closeVideoBtn.addEventListener('click', closeVideoModal);
+  if (videoPlayerOverlay) {
+    videoPlayerOverlay.addEventListener('click', closeVideoPlayer);
   }
 
-  if (modalOverlay) {
-    modalOverlay.addEventListener('click', closeVideoModal);
-  }
+  // Video selection buttons
+  document.querySelectorAll('#videoModal .option-card[data-video]').forEach(card => {
+    card.addEventListener('click', function() {
+      const videoType = this.getAttribute('data-video');
+      openVideoPlayer(videoType);
+    });
+  });
 
-  // Close modal on Escape key
+  // Close modals on Escape key
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && videoModal?.classList.contains('active')) {
-      closeVideoModal();
+    if (e.key === 'Escape') {
+      if (videoPlayerModal?.classList.contains('active')) {
+        closeVideoPlayer();
+      } else if (lineModal?.classList.contains('active')) {
+        closeLineModal();
+      } else if (videoModal?.classList.contains('active')) {
+        closeVideoModal();
+      }
     }
   });
 

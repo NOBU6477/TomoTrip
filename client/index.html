@@ -125,18 +125,19 @@
       </p>
       
       <div class="hero__cta">
-        <!-- TODO: Replace with actual LINE URL -->
-        <a href="https://lin.ee/yourline" class="btn btn--primary btn--large" data-i18n="cta.line" data-testid="button-line-register-hero" target="_blank" rel="noopener noreferrer">
+        <button class="btn btn--primary btn--large" data-testid="button-line-register-hero" id="openLineModalBtn">
           <svg class="btn__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" fill="currentColor"/>
           </svg>
-          LINEで1分登録
-        </a>
-        <button class="btn btn--ghost btn--large" data-i18n="cta.video" data-testid="button-watch-video" id="openVideoBtn">
+          LINEで登録する
+          <span class="btn__subtitle">ガイド・観光客・協賛店</span>
+        </button>
+        <button class="btn btn--ghost btn--large" data-testid="button-watch-video" id="openVideoModalBtn">
           <svg class="btn__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 5v14l11-7z" fill="currentColor"/>
           </svg>
-          仕組みを30秒で見る
+          30秒で見る
+          <span class="btn__subtitle">サービス紹介動画</span>
         </button>
       </div>
       
@@ -673,6 +674,138 @@
     </section>
 
   </main>
+
+  <!-- LINE Registration Modal -->
+  <div id="lineModal" class="modal" data-testid="modal-line-registration">
+    <div class="modal__overlay" id="lineModalOverlay"></div>
+    <div class="modal__content">
+      <div class="modal__header">
+        <h3 class="modal__title">LINE登録</h3>
+        <button class="modal__close" id="closeLineModal" aria-label="閉じる" data-testid="button-close-line-modal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="modal__description">あなたに合った登録タイプをお選びください</p>
+      <div class="modal__options">
+        <a href="https://lin.ee/yourline-guide" class="option-card option-card--guide" data-testid="link-line-guide" target="_blank" rel="noopener noreferrer">
+          <div class="option-card__icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h4 class="option-card__title">ガイド登録</h4>
+          <p class="option-card__description">地元を案内して収入を得る</p>
+          <div class="option-card__features">
+            <span class="feature-tag">¥6,000~/セッション</span>
+            <span class="feature-tag">自由な時間設定</span>
+          </div>
+        </a>
+        
+        <a href="https://lin.ee/yourline-tourist" class="option-card option-card--tourist" data-testid="link-line-tourist" target="_blank" rel="noopener noreferrer">
+          <div class="option-card__icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h4 class="option-card__title">観光客登録</h4>
+          <p class="option-card__description">地元ガイドと旅を楽しむ</p>
+          <div class="option-card__features">
+            <span class="feature-tag">地元民ならではの案内</span>
+            <span class="feature-tag">カスタムプラン</span>
+          </div>
+        </a>
+        
+        <a href="https://lin.ee/yourline-sponsor" class="option-card option-card--sponsor" data-testid="link-line-sponsor" target="_blank" rel="noopener noreferrer">
+          <div class="option-card__icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="12" y1="22.08" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h4 class="option-card__title">協賛店登録</h4>
+          <p class="option-card__description">観光客を店舗へ誘導</p>
+          <div class="option-card__features">
+            <span class="feature-tag">集客サポート</span>
+            <span class="feature-tag">永続配当あり</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Selection Modal -->
+  <div id="videoModal" class="modal" data-testid="modal-video-selection">
+    <div class="modal__overlay" id="videoModalOverlay"></div>
+    <div class="modal__content">
+      <div class="modal__header">
+        <h3 class="modal__title">サービス紹介動画</h3>
+        <button class="modal__close" id="closeVideoModal" aria-label="閉じる" data-testid="button-close-video-modal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="modal__description">ご覧になりたい動画を選択してください</p>
+      <div class="modal__options">
+        <button class="option-card option-card--guide" data-video="guide" data-testid="button-video-guide">
+          <div class="option-card__icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
+            </svg>
+          </div>
+          <h4 class="option-card__title">ガイド向け</h4>
+          <p class="option-card__description">収入を得る仕組みを解説</p>
+          <span class="video-duration">30秒</span>
+        </button>
+        
+        <button class="option-card option-card--tourist" data-video="tourist" data-testid="button-video-tourist">
+          <div class="option-card__icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
+            </svg>
+          </div>
+          <h4 class="option-card__title">観光客向け</h4>
+          <p class="option-card__description">ガイド予約の流れを紹介</p>
+          <span class="video-duration">30秒</span>
+        </button>
+        
+        <button class="option-card option-card--sponsor" data-video="sponsor" data-testid="button-video-sponsor">
+          <div class="option-card__icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
+            </svg>
+          </div>
+          <h4 class="option-card__title">協賛店向け</h4>
+          <p class="option-card__description">集客と配当の仕組み</p>
+          <span class="video-duration">30秒</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Player Modal -->
+  <div id="videoPlayerModal" class="modal modal--video" data-testid="modal-video-player">
+    <div class="modal__overlay" id="videoPlayerOverlay"></div>
+    <div class="modal__content modal__content--video">
+      <button class="modal__close modal__close--video" id="closeVideoPlayer" aria-label="閉じる" data-testid="button-close-video-player">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="video-container" id="videoContainer">
+        <!-- Video will be inserted here dynamically -->
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="footer" id="footer">
