@@ -7,6 +7,20 @@
   'use strict';
 
   // ===================================================================
+  // CONFIGURATION
+  // ===================================================================
+  // TODO: Replace these with your actual LINE account details
+  const LINE_ACCOUNT_ID = 'REPLACE_WITH_YOUR_LINE_ID'; // Without @ symbol
+  const LINE_ADD_FRIEND_URL = 'https://lin.ee/REPLACE_ME'; // Fallback URL
+  
+  // TODO: Replace these with your actual YouTube video URLs
+  const VIDEO_URLS = {
+    guide: 'https://www.youtube.com/watch?v=GUIDE_VIDEO_ID',
+    tourist: 'https://www.youtube.com/watch?v=TOURIST_VIDEO_ID',
+    sponsor: 'https://www.youtube.com/watch?v=SPONSOR_VIDEO_ID'
+  };
+
+  // ===================================================================
   // ANALYTICS TRACKING HOOK
   // ===================================================================
   /**
@@ -31,18 +45,88 @@
   };
 
   // ===================================================================
-  // LINE REGISTRATION MODAL
+  // LINE REGISTRATION MODAL WITH DEEP LINK
   // ===================================================================
   const lineModal = document.getElementById('lineModal');
   const openLineModalBtn = document.getElementById('openLineModalBtn');
   const closeLineModalBtn = document.getElementById('closeLineModal');
   const lineModalOverlay = document.getElementById('lineModalOverlay');
+  const lineFallbackHelper = document.getElementById('lineFallbackHelper');
+  const fallbackKeyword = document.getElementById('fallbackKeyword');
+  const copyKeywordBtn = document.getElementById('copyKeywordBtn');
+
+  /**
+   * Generate LINE oaMessage deep link
+   * @param {string} keyword - The pre-filled message keyword
+   * @returns {string} LINE deep link URL
+   */
+  function lineOaMessageLink(keyword) {
+    return `https://line.me/R/oaMessage/@${LINE_ACCOUNT_ID}/?${encodeURIComponent(keyword)}`;
+  }
+
+  /**
+   * Show fallback helper UI with copy functionality
+   * @param {string} keyword - The keyword to display and copy
+   */
+  function showCopyHelper(keyword) {
+    if (!lineFallbackHelper || !fallbackKeyword) return;
+    
+    fallbackKeyword.textContent = keyword;
+    lineFallbackHelper.style.display = 'block';
+    
+    // Scroll to fallback helper
+    setTimeout(() => {
+      lineFallbackHelper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
+  }
+
+  /**
+   * Hide fallback helper UI
+   */
+  function hideCopyHelper() {
+    if (!lineFallbackHelper) return;
+    lineFallbackHelper.style.display = 'none';
+  }
+
+  /**
+   * Open LINE with keyword (with fallback)
+   * @param {string} keyword - The keyword to send
+   */
+  function openLineWithKeyword(keyword) {
+    const oaMessageUrl = lineOaMessageLink(keyword);
+    
+    // Track click event
+    window.ttTrack('line_registration_click', {
+      keyword: keyword,
+      deep_link: oaMessageUrl
+    });
+    
+    // Try to open LINE with oaMessage deep link
+    const win = window.open(oaMessageUrl, '_blank');
+    
+    // Fallback mechanism (for desktop or if deep link doesn't work)
+    setTimeout(() => {
+      if (!win || win.closed || typeof win.closed === 'undefined') {
+        // Open friend add URL as fallback
+        if (LINE_ADD_FRIEND_URL && LINE_ADD_FRIEND_URL !== 'https://lin.ee/REPLACE_ME') {
+          window.open(LINE_ADD_FRIEND_URL, '_blank');
+        }
+        // Show copy helper
+        showCopyHelper(keyword);
+        
+        window.ttTrack('line_fallback_triggered', {
+          keyword: keyword
+        });
+      }
+    }, 800);
+  }
 
   function openLineModal() {
     if (!lineModal) return;
     lineModal.classList.add('active');
     document.body.style.overflow = 'hidden';
     closeLineModalBtn?.focus();
+    hideCopyHelper(); // Reset fallback helper
     
     window.ttTrack('line_modal_open', { source: 'hero_button' });
   }
@@ -52,6 +136,7 @@
     lineModal.classList.remove('active');
     document.body.style.overflow = '';
     openLineModalBtn?.focus();
+    hideCopyHelper(); // Hide fallback helper
     
     window.ttTrack('line_modal_close', {});
   }
@@ -68,20 +153,40 @@
     lineModalOverlay.addEventListener('click', closeLineModal);
   }
 
-  // Track LINE registration type selection
-  document.querySelectorAll('#lineModal .option-card').forEach(card => {
+  // LINE registration type selection buttons
+  document.querySelectorAll('#lineModal .option-card[data-keyword]').forEach(card => {
     card.addEventListener('click', function() {
-      const type = this.classList.contains('option-card--guide') ? 'guide' :
-                   this.classList.contains('option-card--tourist') ? 'tourist' : 'sponsor';
-      window.ttTrack('line_registration_click', {
-        registration_type: type,
-        destination_url: this.href
-      });
+      const keyword = this.getAttribute('data-keyword');
+      openLineWithKeyword(keyword);
     });
   });
 
+  // Copy keyword button
+  if (copyKeywordBtn) {
+    copyKeywordBtn.addEventListener('click', function() {
+      const keyword = fallbackKeyword?.textContent;
+      if (!keyword) return;
+      
+      // Copy to clipboard
+      navigator.clipboard.writeText(keyword).then(() => {
+        // Visual feedback
+        const originalText = this.innerHTML;
+        this.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>コピー完了！';
+        
+        setTimeout(() => {
+          this.innerHTML = originalText;
+        }, 2000);
+        
+        window.ttTrack('keyword_copied', { keyword: keyword });
+      }).catch(err => {
+        console.error('Failed to copy keyword:', err);
+        alert('コピーに失敗しました。手動でキーワードをコピーしてください。');
+      });
+    });
+  }
+
   // ===================================================================
-  // VIDEO SELECTION MODAL
+  // VIDEO SELECTION MODAL - Open YouTube in New Tab
   // ===================================================================
   const videoModal = document.getElementById('videoModal');
   const openVideoModalBtn = document.getElementById('openVideoModalBtn');
@@ -118,86 +223,38 @@
     videoModalOverlay.addEventListener('click', closeVideoModal);
   }
 
-  // ===================================================================
-  // VIDEO PLAYER MODAL
-  // ===================================================================
-  const videoPlayerModal = document.getElementById('videoPlayerModal');
-  const closeVideoPlayerBtn = document.getElementById('closeVideoPlayer');
-  const videoPlayerOverlay = document.getElementById('videoPlayerOverlay');
-  const videoContainer = document.getElementById('videoContainer');
-
-  // Video URLs - TODO: Replace with actual video URLs
-  const videoUrls = {
-    guide: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-    tourist: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-    sponsor: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
-  };
-
-  function openVideoPlayer(videoType) {
-    if (!videoPlayerModal || !videoContainer) return;
-    
-    const videoUrl = videoUrls[videoType];
-    if (!videoUrl) return;
-    
-    // Create iframe for video
-    videoContainer.innerHTML = `
-      <iframe 
-        src="${videoUrl}?autoplay=1" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen
-        title="${videoType} video"
-      ></iframe>
-    `;
-    
-    videoPlayerModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    closeVideoPlayerBtn?.focus();
-    
-    // Close video selection modal
-    if (videoModal) {
-      videoModal.classList.remove('active');
-    }
-    
-    window.ttTrack('video_play', {
-      video_type: videoType,
-      video_url: videoUrl
-    });
-  }
-
-  function closeVideoPlayer() {
-    if (!videoPlayerModal || !videoContainer) return;
-    
-    videoPlayerModal.classList.remove('active');
-    document.body.style.overflow = '';
-    
-    // Stop video playback
-    videoContainer.innerHTML = '';
-    
-    window.ttTrack('video_close', {});
-  }
-
-  if (closeVideoPlayerBtn) {
-    closeVideoPlayerBtn.addEventListener('click', closeVideoPlayer);
-  }
-
-  if (videoPlayerOverlay) {
-    videoPlayerOverlay.addEventListener('click', closeVideoPlayer);
-  }
-
-  // Video selection buttons
-  document.querySelectorAll('#videoModal .option-card[data-video]').forEach(card => {
+  // Video selection buttons - Open YouTube in new tab
+  document.querySelectorAll('#videoModal .option-card[data-video-url]').forEach(card => {
     card.addEventListener('click', function() {
-      const videoType = this.getAttribute('data-video');
-      openVideoPlayer(videoType);
+      const videoUrl = this.getAttribute('data-video-url');
+      if (!videoUrl || videoUrl.includes('VIDEO_ID')) {
+        console.warn('[TomoTrip] Video URL not configured:', videoUrl);
+        alert('動画URLが設定されていません。設定ファイルを確認してください。');
+        return;
+      }
+      
+      // Determine video type from card class
+      const videoType = this.classList.contains('option-card--guide') ? 'guide' :
+                        this.classList.contains('option-card--tourist') ? 'tourist' : 'sponsor';
+      
+      // Track video open event
+      window.ttTrack('video_open', {
+        video_type: videoType,
+        video_url: videoUrl
+      });
+      
+      // Open YouTube video in new tab
+      window.open(videoUrl, '_blank', 'noopener,noreferrer');
+      
+      // Close video selection modal
+      closeVideoModal();
     });
   });
 
   // Close modals on Escape key
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
-      if (videoPlayerModal?.classList.contains('active')) {
-        closeVideoPlayer();
-      } else if (lineModal?.classList.contains('active')) {
+      if (lineModal?.classList.contains('active')) {
         closeLineModal();
       } else if (videoModal?.classList.contains('active')) {
         closeVideoModal();

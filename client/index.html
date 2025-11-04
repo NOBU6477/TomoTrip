@@ -689,7 +689,22 @@
       </div>
       <p class="modal__description">あなたに合った登録タイプをお選びください</p>
       <div class="modal__options">
-        <a href="https://lin.ee/yourline-guide" class="option-card option-card--guide" data-testid="link-line-guide" target="_blank" rel="noopener noreferrer">
+        <button class="option-card option-card--tourist" data-keyword="観光客" data-testid="button-line-tourist">
+          <div class="option-card__icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h4 class="option-card__title">観光客登録</h4>
+          <p class="option-card__description">地元ガイドと旅を楽しむ</p>
+          <div class="option-card__features">
+            <span class="feature-tag">地元民ならではの案内</span>
+            <span class="feature-tag">カスタムプラン</span>
+          </div>
+        </button>
+        
+        <button class="option-card option-card--guide" data-keyword="ガイド" data-testid="button-line-guide">
           <div class="option-card__icon">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -703,24 +718,9 @@
             <span class="feature-tag">¥6,000~/セッション</span>
             <span class="feature-tag">自由な時間設定</span>
           </div>
-        </a>
+        </button>
         
-        <a href="https://lin.ee/yourline-tourist" class="option-card option-card--tourist" data-testid="link-line-tourist" target="_blank" rel="noopener noreferrer">
-          <div class="option-card__icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
-            </svg>
-          </div>
-          <h4 class="option-card__title">観光客登録</h4>
-          <p class="option-card__description">地元ガイドと旅を楽しむ</p>
-          <div class="option-card__features">
-            <span class="feature-tag">地元民ならではの案内</span>
-            <span class="feature-tag">カスタムプラン</span>
-          </div>
-        </a>
-        
-        <a href="https://lin.ee/yourline-sponsor" class="option-card option-card--sponsor" data-testid="link-line-sponsor" target="_blank" rel="noopener noreferrer">
+        <button class="option-card option-card--sponsor" data-keyword="協賛店" data-testid="button-line-sponsor">
           <div class="option-card__icon">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -734,7 +734,25 @@
             <span class="feature-tag">集客サポート</span>
             <span class="feature-tag">永続配当あり</span>
           </div>
-        </a>
+        </button>
+      </div>
+      
+      <!-- Fallback Helper (hidden by default) -->
+      <div id="lineFallbackHelper" class="fallback-helper" style="display: none;">
+        <div class="fallback-helper__content">
+          <p class="fallback-helper__message">LINEを開いたら、以下のキーワードを送信してください：</p>
+          <div class="fallback-helper__keyword-box">
+            <span id="fallbackKeyword" class="fallback-helper__keyword"></span>
+            <button id="copyKeywordBtn" class="fallback-helper__copy-btn" data-testid="button-copy-keyword">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              コピー
+            </button>
+          </div>
+          <p class="fallback-helper__note">※キーワードが自動入力されていない場合のみ、手動で貼り付けてください</p>
+        </div>
       </div>
     </div>
   </div>
@@ -753,7 +771,7 @@
       </div>
       <p class="modal__description">ご覧になりたい動画を選択してください</p>
       <div class="modal__options">
-        <button class="option-card option-card--guide" data-video="guide" data-testid="button-video-guide">
+        <button class="option-card option-card--guide" data-video-url="https://www.youtube.com/watch?v=GUIDE_VIDEO_ID" data-testid="button-video-guide">
           <div class="option-card__icon">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
@@ -765,7 +783,7 @@
           <span class="video-duration">30秒</span>
         </button>
         
-        <button class="option-card option-card--tourist" data-video="tourist" data-testid="button-video-tourist">
+        <button class="option-card option-card--tourist" data-video-url="https://www.youtube.com/watch?v=TOURIST_VIDEO_ID" data-testid="button-video-tourist">
           <div class="option-card__icon">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
@@ -777,7 +795,7 @@
           <span class="video-duration">30秒</span>
         </button>
         
-        <button class="option-card option-card--sponsor" data-video="sponsor" data-testid="button-video-sponsor">
+        <button class="option-card option-card--sponsor" data-video-url="https://www.youtube.com/watch?v=SPONSOR_VIDEO_ID" data-testid="button-video-sponsor">
           <div class="option-card__icon">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
