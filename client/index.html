@@ -138,17 +138,17 @@
       </div>
       
       <div class="hero__badges" data-i18n="hero.badges">
-        <span class="badge" data-testid="badge-student">
+        <span class="badge" data-testid="badge-target">
           <svg class="badge__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" fill="currentColor"/>
           </svg>
-          学生・夜職・観光関連の副業に◎
+          年齢制限なし・あらゆる属性が活躍中
         </span>
-        <span class="badge" data-testid="badge-free">
+        <span class="badge" data-testid="badge-fee">
           <svg class="badge__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" fill="currentColor"/>
           </svg>
-          登録無料
+          最低¥6,000~/セッション保証
         </span>
       </div>
     </div>
@@ -264,6 +264,9 @@
           <button class="tab" role="tab" aria-selected="false" aria-controls="panel-night" id="tab-night" data-audience="night" data-testid="tab-night">
             夜職向け
           </button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-homemaker" id="tab-homemaker" data-audience="homemaker" data-testid="tab-homemaker">
+            主婦・個人事業主向け
+          </button>
           <button class="tab" role="tab" aria-selected="false" aria-controls="panel-pro" id="tab-pro" data-audience="pro" data-testid="tab-pro">
             観光事業者向け
           </button>
@@ -275,29 +278,29 @@
             <div class="tab-panel__content">
               <div class="tab-panel__main">
                 <h3 class="tab-panel__title" data-i18n="audience.student.title">
-                  授業の合間や週末に、新しい収入源を
+                  学んだスキルを収入に。授業の合間が仕事場になる
                 </h3>
                 <p class="tab-panel__text" data-i18n="audience.student.desc">
-                  学生生活は忙しいもの。TomoTripなら、あなたのスケジュールに合わせて自由に働けます。放課後の2時間だけ、週末だけなど、無理なく続けられます。キャンパス周辺のカフェやランチスポット、勉強場所など、学生目線の案内が人気です。
+                  語学力、デザインスキル、IT知識、地域研究の成果——大学で学んだことが全て観光資源に。「国際交流サークルで培った英会話」「建築学科で学んだ街並み解説」「地元史の研究成果を活かしたディープツアー」など、あなたの専門性が旅行者の特別な思い出になります。最低¥6,000/セッション〜で、自由に料金設定も可能です。
                 </p>
                 <ul class="tab-panel__features">
                   <li data-i18n="audience.student.feature1">
                     <svg class="feature-icon" width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" fill="currentColor"/>
                     </svg>
-                    平均時給 ¥2,500〜¥4,000 (1回2時間〜)
+                    最低¥6,000/セッション保証、設定次第で時給換算¥3,000〜¥6,000+も可能
                   </li>
                   <li data-i18n="audience.student.feature2">
                     <svg class="feature-icon" width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" fill="currentColor"/>
                     </svg>
-                    空きコマや放課後の時間を有効活用
+                    語学・専門知識・サークル活動の成果が全て収入源に
                   </li>
                   <li data-i18n="audience.student.feature3">
                     <svg class="feature-icon" width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" fill="currentColor"/>
                     </svg>
-                    コミュニケーション力が自然と身につく
+                    空きコマ・放課後・週末だけOK。就活でアピールできる実績にも
                   </li>
                 </ul>
               </div>
@@ -324,29 +327,29 @@
             <div class="tab-panel__content">
               <div class="tab-panel__main">
                 <h3 class="tab-panel__title" data-i18n="audience.night.title">
-                  昼の時間を活かして、新しいキャリアを
+                  出勤前のひと仕事が、新しい収入に。夜の街を昼も夜も案内
                 </h3>
                 <p class="tab-panel__text" data-i18n="audience.night.desc">
-                  夜のお仕事をされている方にとって、日中の時間は貴重な収入機会。TomoTripなら、あなたの知る夜の街の魅力を昼間に伝えることもできます。バーやクラブ、おしゃれなディナースポットなど、ナイトライフに詳しいガイドは特に人気があります。
+                  「出勤前の夕方に2時間だけガイド→そのまま同伴出勤」「お昼は居酒屋でランチ案内、夜は本業」——TomoTripなら、あなたの生活スタイルに合わせた働き方が実現します。夜の街に詳しいあなただからこそ案内できる、隠れ家バー・おしゃれなディナースポット・ナイトクラブ情報は、大人の旅行者に大人気。居酒屋で一緒にお酒を楽しむプランや、ナイトライフ体験ツアーなど、他にはない価値を提供できます。最低¥6,000/セッション〜、夜の案内なら更に高単価も。
                 </p>
                 <ul class="tab-panel__features">
                   <li data-i18n="audience.night.feature1">
                     <svg class="feature-icon" width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" fill="currentColor"/>
                     </svg>
-                    平均時給 ¥3,000〜¥5,000 (夜のスポット案内)
+                    出勤前ガイド→同伴出勤も可。居酒屋で一緒にお酒を楽しむプランも人気
                   </li>
                   <li data-i18n="audience.night.feature2">
                     <svg class="feature-icon" width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" fill="currentColor"/>
                     </svg>
-                    日中の空き時間を有効活用
+                    最低¥6,000/セッション〜、ナイトライフ案内は時給換算¥4,000〜¥8,000+も
                   </li>
                   <li data-i18n="audience.night.feature3">
                     <svg class="feature-icon" width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" fill="currentColor"/>
                     </svg>
-                    接客スキルを活かせる
+                    磨き抜かれた接客スキルと夜の街の知識が最大の武器
                   </li>
                 </ul>
               </div>
@@ -368,34 +371,83 @@
             </div>
           </div>
           
+          <!-- Homemaker / Freelancer Panel -->
+          <div class="tab-panel" role="tabpanel" id="panel-homemaker" aria-labelledby="tab-homemaker" hidden data-testid="panel-homemaker">
+            <div class="tab-panel__content">
+              <div class="tab-panel__main">
+                <h3 class="tab-panel__title" data-i18n="audience.homemaker.title">
+                  日常が観光資源に。主婦・個人事業主の新しい収入源
+                </h3>
+                <p class="tab-panel__text" data-i18n="audience.homemaker.desc">
+                  「地元のスーパーでの買い物ツアー」「子育てママの公園案内」「商店街の名店めぐり」「自宅サロンと組み合わせた街歩き」——普段の生活で培った地域の知識が、観光客にとっては特別な体験に。年齢制限なし、誰でも参加できます。個人事業主の方なら、本業と組み合わせた独自プランも作れます。「陶芸体験+窯元めぐり」「美容師が案内する美容スポット巡り」など、あなたの専門性×地元愛が新しい価値を生み出します。最低¥6,000/セッション〜で、すき間時間を収入に変えましょう。
+                </p>
+                <ul class="tab-panel__features">
+                  <li data-i18n="audience.homemaker.feature1">
+                    <svg class="feature-icon" width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" fill="currentColor"/>
+                    </svg>
+                    日常の買い物・子育て・趣味が全て収入源に。最低¥6,000/セッション〜
+                  </li>
+                  <li data-i18n="audience.homemaker.feature2">
+                    <svg class="feature-icon" width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" fill="currentColor"/>
+                    </svg>
+                    個人事業と組み合わせて新しい顧客獲得チャンスにも
+                  </li>
+                  <li data-i18n="audience.homemaker.feature3">
+                    <svg class="feature-icon" width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" fill="currentColor"/>
+                    </svg>
+                    年齢制限なし。子育て中、シニアの方も大歓迎
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="tab-panel__faq">
+                <h4 class="tab-panel__faq-title">よくある質問</h4>
+                <details class="faq-item" data-testid="faq-homemaker-1">
+                  <summary class="faq-item__question">
+                    特別なスキルがなくても大丈夫ですか？
+                    <svg class="faq-item__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </summary>
+                  <div class="faq-item__answer">
+                    はい、大丈夫です。「地元のスーパーでの買い物の仕方」「近所の公園で子供が喜ぶ遊び方」など、日常の何気ない体験が観光客にとっては貴重な思い出になります。あなたの日常が誰かの特別な体験になるのです。
+                  </div>
+                </details>
+              </div>
+            </div>
+          </div>
+          
           <!-- Tourism Pro Panel -->
           <div class="tab-panel" role="tabpanel" id="panel-pro" aria-labelledby="tab-pro" hidden data-testid="panel-pro">
             <div class="tab-panel__content">
               <div class="tab-panel__main">
                 <h3 class="tab-panel__title" data-i18n="audience.pro.title">
-                  プロのスキルで、さらなる収益を
+                  プロのスキルで、さらなる収益を。観光を本業にする道も
                 </h3>
                 <p class="tab-panel__text" data-i18n="audience.pro.desc">
-                  すでに観光業界で働いている方、通訳案内士の資格をお持ちの方なら、さらに高い報酬が期待できます。専門的な知識や外国語スキルを活かして、質の高いガイドサービスを提供できます。旅行会社やホテルとの提携も可能です。
+                  通訳案内士、観光業従事者、旅行会社勤務の方——あなたの専門性がそのまま高単価の収入に。「英語で案内する本格的な文化体験ツアー」「企業向けのチームビルディング観光」「外国人VIP対応」など、プロフェッショナルならではの質の高いサービスを提供できます。最低¥6,000/セッション〜ですが、専門ガイドとして時給換算¥5,000〜¥10,000+も十分可能。本業との相乗効果で、新しいキャリアの可能性も広がります。
                 </p>
                 <ul class="tab-panel__features">
                   <li data-i18n="audience.pro.feature1">
                     <svg class="feature-icon" width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" fill="currentColor"/>
                     </svg>
-                    平均時給 ¥4,000〜¥8,000+ (専門ガイド)
+                    専門ガイドとして時給換算¥5,000〜¥10,000+。企業向け高単価案件も
                   </li>
                   <li data-i18n="audience.pro.feature2">
                     <svg class="feature-icon" width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" fill="currentColor"/>
                     </svg>
-                    企業向けツアーなど高単価案件も
+                    通訳案内士・観光業の実績がそのまま信頼と収益に
                   </li>
                   <li data-i18n="audience.pro.feature3">
                     <svg class="feature-icon" width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" fill="currentColor"/>
                     </svg>
-                    プロフェッショナルバッジで信頼度UP
+                    法人アカウントで既存事業との相乗効果も創出可能
                   </li>
                 </ul>
               </div>

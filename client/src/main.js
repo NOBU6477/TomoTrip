@@ -117,7 +117,7 @@
     // Check URL search params first
     const urlParams = new URLSearchParams(window.location.search);
     const audienceParam = urlParams.get('audience');
-    if (audienceParam && ['student', 'night', 'pro'].includes(audienceParam)) {
+    if (audienceParam && ['student', 'night', 'homemaker', 'pro'].includes(audienceParam)) {
       return audienceParam;
     }
     
@@ -125,7 +125,7 @@
     const hash = window.location.hash;
     if (hash.startsWith('#audience=')) {
       const hashAudience = hash.replace('#audience=', '');
-      if (['student', 'night', 'pro'].includes(hashAudience)) {
+      if (['student', 'night', 'homemaker', 'pro'].includes(hashAudience)) {
         return hashAudience;
       }
     }
@@ -136,10 +136,10 @@
 
   /**
    * Set active audience tab
-   * @param {string} audience - 'student', 'night', or 'pro'
+   * @param {string} audience - 'student', 'night', 'homemaker', or 'pro'
    */
   window.setAudience = function(audience) {
-    if (!['student', 'night', 'pro'].includes(audience)) {
+    if (!['student', 'night', 'homemaker', 'pro'].includes(audience)) {
       console.warn('[TomoTrip] Invalid audience:', audience);
       return;
     }
