@@ -196,7 +196,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('/assets/images/hero.jpg');
+  background-image: url('/attached_assets/ChatGPT Image 2025年8月5日 21_41_02_1762268027874.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -229,11 +229,27 @@ body {
   color: var(--color-white);
   margin-bottom: var(--spacing-lg);
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.hero__title-logo {
+  height: 2.5rem;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 @media (min-width: 768px) {
   .hero__title {
     font-size: 4rem;
+  }
+  
+  .hero__title-logo {
+    height: 4rem;
   }
 }
 
@@ -950,6 +966,12 @@ body {
   font-weight: 700;
   color: var(--color-white);
   margin-bottom: var(--spacing-md);
+}
+
+.footer__logo-img {
+  height: 2rem;
+  width: auto;
+  display: inline-block;
 }
 
 .footer__description {
