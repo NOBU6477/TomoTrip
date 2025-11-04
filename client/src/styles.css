@@ -978,6 +978,12 @@ body {
   margin-bottom: var(--spacing-md);
 }
 
+.footer__logo-img {
+  height: 2rem;
+  width: auto;
+  display: block;
+}
+
 .footer__description {
   font-size: 0.875rem;
   line-height: 1.6;
