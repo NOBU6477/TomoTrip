@@ -16,5 +16,5 @@ localPort = 5174
 externalPort = 3000
 
 [deployment]
-run = ["sh", "-c", "npm run build && npx vite preview --host 0.0.0.0 --port 80"]
+run = ["sh", "-c", "npm run build && npx serve dist/public -l 80"]
 build = ["sh", "-c", "npm run build"]
