@@ -18,4 +18,4 @@ externalPort = 3000
 run = ["sh", "-c", "npm run build && npx serve dist/public --listen 0.0.0.0:80"]
 build = ["sh", "-c", "npm run build"]
 deploymentTarget = "static"
-publicDir = "dist"
+publicDir = "dist/public"
