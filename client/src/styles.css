@@ -1634,3 +1634,165 @@ body {
     transform: translateY(0);
   }
 }
+
+/* ===================================================================
+   SPONSOR SECTION (協賛店向け)
+   =================================================================== */
+.section--sponsor {
+  padding: 80px 0;
+  background: #f5fcff;
+}
+
+.sponsor-hero,
+.sponsor-benefits__grid,
+.sponsor-pricing__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sponsor-hero__text {
+  flex: 1 1 360px;
+}
+
+.sponsor-hero__image {
+  flex: 1 1 320px;
+  text-align: center;
+}
+
+.sponsor-hero__image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin-bottom: 16px;
+}
+
+.section-lead {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  color: var(--color-gray-700);
+}
+
+.sponsor-hero__points {
+  margin: 0 0 16px;
+  padding-left: 1.2em;
+  list-style: disc;
+}
+
+.sponsor-hero__points li {
+  margin-bottom: 4px;
+  color: var(--color-gray-700);
+  line-height: 1.7;
+}
+
+.sponsor-hero__cta {
+  margin-top: 12px;
+}
+
+.sponsor-hero__note,
+.sponsor-pricing__note,
+.section-text {
+  font-size: 0.9rem;
+  color: var(--color-gray-600);
+  line-height: 1.7;
+}
+
+.sponsor-benefits {
+  margin-top: 56px;
+}
+
+.sponsor-benefits__grid .sponsor-card,
+.sponsor-pricing__grid .sponsor-card {
+  flex: 1 1 260px;
+  background: var(--color-white);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.sponsor-card h4 {
+  margin-bottom: 8px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+
+.sponsor-card p {
+  color: var(--color-gray-700);
+  line-height: 1.7;
+}
+
+.sponsor-pricing {
+  margin-top: 56px;
+}
+
+.sponsor-pricing__grid ul {
+  padding-left: 1.2em;
+  list-style: disc;
+}
+
+.sponsor-pricing__grid ul li {
+  margin-bottom: 4px;
+  color: var(--color-gray-700);
+}
+
+.sponsor-relation,
+.sponsor-flow,
+.sponsor-cta {
+  margin-top: 56px;
+}
+
+.sponsor-flow__list {
+  padding-left: 1.2em;
+}
+
+.sponsor-flow__list li {
+  margin-bottom: 8px;
+  color: var(--color-gray-700);
+  line-height: 1.7;
+}
+
+.sponsor-cta {
+  text-align: center;
+}
+
+.sponsor-cta .btn {
+  margin-top: 16px;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+  .sponsor-hero,
+  .sponsor-benefits__grid,
+  .sponsor-pricing__grid {
+    flex-direction: column;
+  }
+
+  .section--sponsor {
+    padding: 48px 0;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.25rem;
+  }
+}
