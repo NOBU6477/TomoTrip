@@ -35,52 +35,103 @@
   // ===================================================================
   const videoModal = document.getElementById('videoModal');
   const videoIframe = document.getElementById('videoIframe');
-  const openVideoBtn = document.getElementById('openVideoBtn');
-  const closeVideoBtn = document.getElementById('closeVideoBtn');
-  const modalOverlay = document.getElementById('modalOverlay');
+  const openVideoBtn = document.getElementById('openVideoModalBtn');
+  const closeVideoBtn = document.getElementById('closeVideoModal');
+  const videoModalOverlay = document.getElementById('videoModalOverlay');
+
+  // Video Player Modal elements
+  const videoPlayerModal = document.getElementById('videoPlayerModal');
+  const videoPlayerOverlay = document.getElementById('videoPlayerOverlay');
+  const closeVideoPlayerBtn = document.getElementById('closeVideoPlayer');
+  const videoContainer = document.getElementById('videoContainer');
 
   function openVideoModal() {
-    if (!videoModal || !videoIframe) return;
-    
-    // Load video source (lazy loading)
-    const videoSrc = videoIframe.getAttribute('data-src');
-    if (videoSrc && !videoIframe.src) {
-      videoIframe.src = videoSrc;
-    }
+    if (!videoModal) return;
     
     videoModal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scroll
+    document.body.style.overflow = 'hidden';
     
-    // Track video open event
-    window.ttTrack('video_open', {
-      video_url: videoSrc,
+    window.ttTrack('video_selection_open', {
       source: 'hero_button'
     });
     
-    // Focus trap
     closeVideoBtn?.focus();
   }
 
   function closeVideoModal() {
-    if (!videoModal || !videoIframe) return;
+    if (!videoModal) return;
     
     videoModal.classList.remove('active');
-    document.body.style.overflow = ''; // Restore scroll
+    document.body.style.overflow = '';
     
-    // Stop video playback
-    const iframeSrc = videoIframe.src;
-    if (iframeSrc) {
-      videoIframe.src = '';
-      setTimeout(() => {
-        videoIframe.src = iframeSrc;
-      }, 100);
+    window.ttTrack('video_selection_close', {});
+    
+    openVideoBtn?.focus();
+  }
+
+  function openVideoPlayer(videoUrl) {
+    if (!videoPlayerModal || !videoContainer) return;
+    
+    // Close selection modal first
+    closeVideoModal();
+    
+    // Extract video ID and create embed URL
+    let embedUrl = videoUrl;
+    if (videoUrl.includes('youtube.com/watch')) {
+      const videoId = new URL(videoUrl).searchParams.get('v');
+      embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
     }
     
-    // Track video close event
-    window.ttTrack('video_close', {});
+    // Insert iframe
+    videoContainer.innerHTML = `
+      <iframe
+        src="${embedUrl}"
+        title="TomoTrip 紹介動画"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        style="width: 100%; height: 100%; min-height: 300px;">
+      </iframe>
+    `;
     
-    // Return focus to open button
-    openVideoBtn?.focus();
+    videoPlayerModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    window.ttTrack('video_play', {
+      video_url: videoUrl
+    });
+  }
+
+  function closeVideoPlayer() {
+    if (!videoPlayerModal || !videoContainer) return;
+    
+    videoPlayerModal.classList.remove('active');
+    document.body.style.overflow = '';
+    
+    // Clear video to stop playback
+    videoContainer.innerHTML = '';
+    
+    window.ttTrack('video_close', {});
+  }
+
+  // Video selection card clicks
+  const videoOptionCards = document.querySelectorAll('#videoModal .option-card');
+  videoOptionCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const videoUrl = this.getAttribute('data-video-url');
+      if (videoUrl) {
+        openVideoPlayer(videoUrl);
+      }
+    });
+  });
+
+  // Close video player
+  if (closeVideoPlayerBtn) {
+    closeVideoPlayerBtn.addEventListener('click', closeVideoPlayer);
+  }
+
+  if (videoPlayerOverlay) {
+    videoPlayerOverlay.addEventListener('click', closeVideoPlayer);
   }
 
   // Event listeners for video modal
@@ -92,15 +143,90 @@
     closeVideoBtn.addEventListener('click', closeVideoModal);
   }
 
-  if (modalOverlay) {
-    modalOverlay.addEventListener('click', closeVideoModal);
+  if (videoModalOverlay) {
+    videoModalOverlay.addEventListener('click', closeVideoModal);
   }
 
   // Close modal on Escape key
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && videoModal?.classList.contains('active')) {
-      closeVideoModal();
+    if (e.key === 'Escape') {
+      if (videoPlayerModal?.classList.contains('active')) {
+        closeVideoPlayer();
+      } else if (videoModal?.classList.contains('active')) {
+        closeVideoModal();
+      }
+      if (lineModal?.classList.contains('active')) {
+        closeLineModal();
+      }
     }
+  });
+
+  // ===================================================================
+  // LINE MODAL
+  // ===================================================================
+  const lineModal = document.getElementById('lineModal');
+  const closeLineModalBtn = document.getElementById('closeLineModal');
+  const lineModalOverlay = document.getElementById('lineModalOverlay');
+  const openLineModalBtn = document.getElementById('openLineModalBtn');
+  const openLineModalBtns = document.querySelectorAll('.open-line-modal');
+
+  function openLineModal() {
+    if (!lineModal) return;
+    
+    lineModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    window.ttTrack('line_modal_open', {
+      source: 'button_click'
+    });
+    
+    closeLineModalBtn?.focus();
+  }
+
+  function closeLineModal() {
+    if (!lineModal) return;
+    
+    lineModal.classList.remove('active');
+    document.body.style.overflow = '';
+    
+    window.ttTrack('line_modal_close', {});
+  }
+
+  // Event listeners for LINE modal
+  if (openLineModalBtn) {
+    openLineModalBtn.addEventListener('click', openLineModal);
+  }
+
+  openLineModalBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      openLineModal();
+    });
+  });
+
+  if (closeLineModalBtn) {
+    closeLineModalBtn.addEventListener('click', closeLineModal);
+  }
+
+  if (lineModalOverlay) {
+    lineModalOverlay.addEventListener('click', closeLineModal);
+  }
+
+  // Handle LINE registration option card clicks
+  const optionCards = document.querySelectorAll('#lineModal .option-card');
+  optionCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const keyword = this.getAttribute('data-keyword');
+      const lineUrl = 'https://lin.ee/yourline'; // TODO: Replace with actual LINE URL
+      
+      window.ttTrack('line_registration_click', {
+        type: keyword
+      });
+      
+      // Open LINE with keyword
+      window.open(lineUrl, '_blank');
+      closeLineModal();
+    });
   });
 
   // ===================================================================
@@ -117,7 +243,7 @@
     // Check URL search params first
     const urlParams = new URLSearchParams(window.location.search);
     const audienceParam = urlParams.get('audience');
-    if (audienceParam && ['student', 'night', 'pro'].includes(audienceParam)) {
+    if (audienceParam && ['student', 'night', 'homemaker', 'pro'].includes(audienceParam)) {
       return audienceParam;
     }
     
@@ -125,7 +251,7 @@
     const hash = window.location.hash;
     if (hash.startsWith('#audience=')) {
       const hashAudience = hash.replace('#audience=', '');
-      if (['student', 'night', 'pro'].includes(hashAudience)) {
+      if (['student', 'night', 'homemaker', 'pro'].includes(hashAudience)) {
         return hashAudience;
       }
     }
@@ -139,7 +265,7 @@
    * @param {string} audience - 'student', 'night', or 'pro'
    */
   window.setAudience = function(audience) {
-    if (!['student', 'night', 'pro'].includes(audience)) {
+    if (!['student', 'night', 'homemaker', 'pro'].includes(audience)) {
       console.warn('[TomoTrip] Invalid audience:', audience);
       return;
     }
