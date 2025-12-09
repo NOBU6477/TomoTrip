@@ -295,6 +295,22 @@ body {
   }
 }
 
+.hero-line-note {
+  margin-top: 12px;
+  margin-bottom: var(--spacing-lg);
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 768px) {
+  .hero-line-note {
+    font-size: 15px;
+  }
+}
+
 .hero__badges {
   display: flex;
   flex-wrap: wrap;
