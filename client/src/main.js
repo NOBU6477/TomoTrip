@@ -434,61 +434,61 @@
       });
 
     } else {
-      // Other audiences: LINE-focused messaging (default)
+      // All audiences now use App-focused messaging (same as pro)
       const btnIcon = heroBtn.querySelector('.btn__icon');
       const btnSubtitle = heroBtn.querySelector('.btn__subtitle');
       if (btnIcon && btnSubtitle) {
         heroBtn.innerHTML = '';
         heroBtn.appendChild(btnIcon);
-        heroBtn.appendChild(document.createTextNode(' LINEで登録する '));
-        btnSubtitle.textContent = 'ガイド・観光客・協賛店';
+        heroBtn.appendChild(document.createTextNode(' 公式アプリで登録を始める '));
+        btnSubtitle.textContent = 'ガイド・協賛店・観光客 登録 OK';
         heroBtn.appendChild(btnSubtitle);
       }
 
-      // Reset card content to default
+      // Update card content to app-focused
       if (heroCardTitle) {
-        heroCardTitle.textContent = '✨ LINE登録で案内が届きます ✨';
+        heroCardTitle.textContent = '✨ アプリ登録で案内が届きます ✨';
       }
       if (heroCardDesc) {
-        heroCardDesc.innerHTML = '希望内容を選ぶだけで、<br>ガイド登録・協賛店登録・観光客登録の<br>わかりやすい案内フローが届きます📲';
+        heroCardDesc.innerHTML = '登録区分（ガイド／協賛店／観光客）をアプリ内で選ぶだけで、<br>あなたに合った、わかりやすい登録フローが届きます📱✨<br>登録後はLINEでもサポート案内が届くので安心です。';
       }
 
-      // Reset campaign button
+      // Update campaign button
       if (campaignBtn) {
         const icon = campaignBtn.querySelector('.btn__icon');
         if (icon) {
           campaignBtn.innerHTML = '';
           campaignBtn.appendChild(icon);
-          campaignBtn.appendChild(document.createTextNode(' LINEで1分登録'));
+          campaignBtn.appendChild(document.createTextNode(' 公式アプリで1分登録'));
         }
       }
 
-      // Reset sponsor registration button
+      // Update sponsor registration button
       if (sponsorRegBtn) {
-        sponsorRegBtn.textContent = '協賛店として登録する（LINEへ）';
+        sponsorRegBtn.textContent = '協賛店として登録する（公式アプリへ）';
       }
 
-      // Reset sponsor CTA button
+      // Update sponsor CTA button
       if (sponsorCtaBtn) {
-        sponsorCtaBtn.textContent = '協賛店登録（LINEで申し込む）';
+        sponsorCtaBtn.textContent = '協賛店登録（公式アプリで申し込む）';
       }
 
-      // Reset mobile CTA button
+      // Update mobile CTA button
       if (mobileCtaBtn) {
         const icon = mobileCtaBtn.querySelector('.btn__icon');
         if (icon) {
           mobileCtaBtn.innerHTML = '';
           mobileCtaBtn.appendChild(icon);
-          mobileCtaBtn.appendChild(document.createTextNode(' LINEで1分登録'));
+          mobileCtaBtn.appendChild(document.createTextNode(' 公式アプリで1分登録'));
         }
       }
 
-      // Reset sponsor notes
+      // Update sponsor notes
       sponsorNotes.forEach((note, index) => {
         if (index === 0) {
-          note.textContent = '※LINE公式アカウントから簡単に登録できます。';
+          note.textContent = '※公式アプリから簡単に登録できます。';
         } else {
-          note.textContent = '※LINEトークで「協賛店希望」と送信すると、担当者からご案内します。';
+          note.textContent = '※公式アプリで「協賛店希望」を選択すると、担当者からご案内します。';
         }
       });
     }
