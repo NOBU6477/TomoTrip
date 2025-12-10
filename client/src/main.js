@@ -349,7 +349,64 @@
       audience: audience,
       source: 'tab_click'
     });
+
+    // Update hero content for pro audience
+    updateHeroForAudience(audience);
   };
+
+  /**
+   * Update hero button and card text based on audience
+   * @param {string} audience - Current audience type
+   */
+  function updateHeroForAudience(audience) {
+    const heroBtn = document.querySelector('#openLineModalBtn');
+    const heroCard = document.querySelector('.hero-line-card');
+    const heroCardTitle = document.querySelector('.hero-line-title');
+    const heroCardDesc = document.querySelector('.hero-line-desc');
+
+    if (!heroBtn || !heroCard) return;
+
+    if (audience === 'pro') {
+      // Pro audience: App-focused messaging
+      // Update button text (preserve SVG icon)
+      const btnIcon = heroBtn.querySelector('.btn__icon');
+      const btnSubtitle = heroBtn.querySelector('.btn__subtitle');
+      if (btnIcon && btnSubtitle) {
+        heroBtn.innerHTML = '';
+        heroBtn.appendChild(btnIcon);
+        heroBtn.appendChild(document.createTextNode(' 公式アプリで登録を始める '));
+        btnSubtitle.textContent = 'ガイド・協賛店・観光客 登録 OK';
+        heroBtn.appendChild(btnSubtitle);
+      }
+
+      // Update card content
+      if (heroCardTitle) {
+        heroCardTitle.textContent = '✨ アプリ登録で案内が届きます ✨';
+      }
+      if (heroCardDesc) {
+        heroCardDesc.innerHTML = '登録区分（ガイド／協賛店／観光客）をアプリ内で選ぶだけで、<br>あなたに合った、わかりやすい登録フローが届きます📱✨<br>登録後はLINEでもサポート案内が届くので安心です。';
+      }
+    } else {
+      // Other audiences: LINE-focused messaging (default)
+      const btnIcon = heroBtn.querySelector('.btn__icon');
+      const btnSubtitle = heroBtn.querySelector('.btn__subtitle');
+      if (btnIcon && btnSubtitle) {
+        heroBtn.innerHTML = '';
+        heroBtn.appendChild(btnIcon);
+        heroBtn.appendChild(document.createTextNode(' LINEで登録する '));
+        btnSubtitle.textContent = 'ガイド・観光客・協賛店';
+        heroBtn.appendChild(btnSubtitle);
+      }
+
+      // Reset card content to default
+      if (heroCardTitle) {
+        heroCardTitle.textContent = '✨ LINE登録で案内が届きます ✨';
+      }
+      if (heroCardDesc) {
+        heroCardDesc.innerHTML = '希望内容を選ぶだけで、<br>ガイド登録・協賛店登録・観光客登録の<br>わかりやすい案内フローが届きます📲';
+      }
+    }
+  }
 
   /**
    * Initialize tabs with keyboard navigation
