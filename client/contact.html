@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Contact - TomoTrip</title>
+  
+  <meta name="description" content="Contact TomoTrip to find a local guide, become a guide, or partner with us.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#00A3C4">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css?v=2">
+  
+  <style>
+    .contact-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .contact-header {
+      padding: 1rem 0;
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .contact-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .contact-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .contact-logo img {
+      height: 40px;
+      width: auto;
+    }
+    
+    .contact-logo span {
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: #00A3C4;
+    }
+    
+    .lang-switch {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .lang-switch a {
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.875rem;
+      color: #666;
+      transition: all 0.2s;
+    }
+    
+    .lang-switch a:hover {
+      background: #f3f4f6;
+    }
+    
+    .lang-switch a.active {
+      background: #00A3C4;
+      color: #fff;
+    }
+    
+    .contact-main {
+      flex: 1;
+      padding: 3rem 0;
+      background: #f8fafc;
+    }
+    
+    .contact-content {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    .contact-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    
+    .contact-subtitle {
+      color: #666;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .contact-type-badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: #00A3C4;
+      color: #fff;
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-form {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+    
+    .form-label .required {
+      color: #ef4444;
+      margin-left: 0.25rem;
+    }
+    
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: #00A3C4;
+      box-shadow: 0 0 0 3px rgba(0, 163, 196, 0.1);
+    }
+    
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: #00A3C4;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .form-submit:hover {
+      background: #008ba8;
+    }
+    
+    .form-note {
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      color: #666;
+      text-align: center;
+    }
+    
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .success-message.show {
+      display: block;
+    }
+    
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1rem;
+      background: #10b981;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .success-icon svg {
+      color: #fff;
+    }
+    
+    .success-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .success-text {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #00A3C4;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    
+    @media (max-width: 640px) {
+      .contact-form {
+        padding: 1.5rem;
+      }
+      
+      .contact-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body class="contact-page">
+  <header class="contact-header">
+    <div class="container">
+      <a href="/" class="contact-logo" id="homeLink">
+        <img src="/public/tomotrip-logo.png" alt="TomoTrip">
+        <span>TomoTrip</span>
+      </a>
+      <div class="lang-switch">
+        <a href="?lang=ja" id="langJa">日本語</a>
+        <a href="?lang=en" id="langEn">English</a>
+      </div>
+    </div>
+  </header>
+  
+  <main class="contact-main">
+    <div class="contact-content">
+      <div class="text-center">
+        <span class="contact-type-badge" id="typeBadge">Contact</span>
+      </div>
+      
+      <h1 class="contact-title" id="pageTitle">Contact Us</h1>
+      <p class="contact-subtitle" id="pageSubtitle">We'll get back to you within 24 hours.</p>
+      
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label class="form-label" for="name">
+            <span id="labelName">Name</span>
+            <span class="required">*</span>
+          </label>
+          <input type="text" id="name" name="name" class="form-input" required data-testid="input-name">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="email">
+            <span id="labelEmail">Email</span>
+            <span class="required">*</span>
+          </label>
+          <input type="email" id="email" name="email" class="form-input" required data-testid="input-email">
+        </div>
+        
+        <div class="form-group" id="nationalityGroup" style="display: none;">
+          <label class="form-label" for="nationality">
+            <span id="labelNationality">Nationality</span>
+          </label>
+          <select id="nationality" name="nationality" class="form-select" data-testid="select-nationality">
+            <option value="">Select your nationality</option>
+            <option value="US">United States</option>
+            <option value="GB">United Kingdom</option>
+            <option value="CA">Canada</option>
+            <option value="AU">Australia</option>
+            <option value="DE">Germany</option>
+            <option value="FR">France</option>
+            <option value="JP">Japan</option>
+            <option value="KR">South Korea</option>
+            <option value="CN">China</option>
+            <option value="TW">Taiwan</option>
+            <option value="HK">Hong Kong</option>
+            <option value="SG">Singapore</option>
+            <option value="TH">Thailand</option>
+            <option value="VN">Vietnam</option>
+            <option value="PH">Philippines</option>
+            <option value="ID">Indonesia</option>
+            <option value="MY">Malaysia</option>
+            <option value="IN">India</option>
+            <option value="IT">Italy</option>
+            <option value="ES">Spain</option>
+            <option value="NL">Netherlands</option>
+            <option value="BR">Brazil</option>
+            <option value="MX">Mexico</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group" id="regionGroup" style="display: none;">
+          <label class="form-label" for="region">
+            <span id="labelRegion">Preferred Region in Japan</span>
+          </label>
+          <select id="region" name="region" class="form-select" data-testid="select-region">
+            <option value="">Select a region</option>
+            <option value="tokyo">Tokyo</option>
+            <option value="osaka">Osaka</option>
+            <option value="kyoto">Kyoto</option>
+            <option value="hokkaido">Hokkaido</option>
+            <option value="okinawa">Okinawa</option>
+            <option value="fukuoka">Fukuoka</option>
+            <option value="nagoya">Nagoya</option>
+            <option value="hiroshima">Hiroshima</option>
+            <option value="nara">Nara</option>
+            <option value="kanazawa">Kanazawa</option>
+            <option value="other">Other / Not decided</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="message">
+            <span id="labelMessage">Message</span>
+            <span class="required">*</span>
+          </label>
+          <textarea id="message" name="message" class="form-textarea" required data-testid="textarea-message"></textarea>
+        </div>
+        
+        <button type="submit" class="form-submit" id="submitBtn" data-testid="button-submit">
+          Send Message
+        </button>
+        
+        <p class="form-note" id="formNote">
+          By submitting, you agree to our Terms of Service and Privacy Policy.
+        </p>
+      </form>
+      
+      <div class="success-message" id="successMessage">
+        <div class="success-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2 class="success-title" id="successTitle">Message Sent!</h2>
+        <p class="success-text" id="successText">Thank you for contacting us. We'll get back to you within 24 hours.</p>
+        <a href="/" class="back-link" id="backLink">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span id="backLinkText">Back to Home</span>
+        </a>
+      </div>
+    </div>
+  </main>
+  
+  <script>
+    // Get URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const type = urlParams.get('type') || 'general';
+    const lang = urlParams.get('lang') || 'ja';
+    
+    // Language content
+    const content = {
+      en: {
+        pageTitle: {
+          tourist: 'Find a Local Guide',
+          guide: 'Become a Local Guide',
+          sponsor: 'Become a Partner',
+          general: 'Contact Us'
+        },
+        pageSubtitle: "We'll get back to you within 24 hours.",
+        typeBadge: {
+          tourist: 'For Travelers',
+          guide: 'For Guides',
+          sponsor: 'For Partners',
+          general: 'Contact'
+        },
+        labelName: 'Name',
+        labelEmail: 'Email',
+        labelNationality: 'Nationality',
+        labelRegion: 'Preferred Region in Japan',
+        labelMessage: 'Message',
+        submitBtn: 'Send Message',
+        formNote: 'By submitting, you agree to our Terms of Service and Privacy Policy.',
+        successTitle: 'Message Sent!',
+        successText: "Thank you for contacting us. We'll get back to you within 24 hours.",
+        backLinkText: 'Back to Home',
+        homeLink: '/en/',
+        nationalityPlaceholder: 'Select your nationality',
+        regionPlaceholder: 'Select a region'
+      },
+      ja: {
+        pageTitle: {
+          tourist: '地元ガイドを探す',
+          guide: 'ガイドとして登録',
+          sponsor: '協賛店として登録',
+          general: 'お問い合わせ'
+        },
+        pageSubtitle: '24時間以内にご返信いたします。',
+        typeBadge: {
+          tourist: '観光客向け',
+          guide: 'ガイド向け',
+          sponsor: '協賛店向け',
+          general: 'お問い合わせ'
+        },
+        labelName: 'お名前',
+        labelEmail: 'メールアドレス',
+        labelNationality: '国籍',
+        labelRegion: '希望エリア',
+        labelMessage: 'メッセージ',
+        submitBtn: '送信する',
+        formNote: '送信することで、利用規約とプライバシーポリシーに同意したものとみなされます。',
+        successTitle: '送信完了！',
+        successText: 'お問い合わせありがとうございます。24時間以内にご返信いたします。',
+        backLinkText: 'トップに戻る',
+        homeLink: '/',
+        nationalityPlaceholder: '国籍を選択',
+        regionPlaceholder: 'エリアを選択'
+      }
+    };
+    
+    // Apply language
+    const t = content[lang] || content.ja;
+    
+    document.documentElement.lang = lang;
+    document.getElementById('pageTitle').textContent = t.pageTitle[type] || t.pageTitle.general;
+    document.getElementById('pageSubtitle').textContent = t.pageSubtitle;
+    document.getElementById('typeBadge').textContent = t.typeBadge[type] || t.typeBadge.general;
+    document.getElementById('labelName').textContent = t.labelName;
+    document.getElementById('labelEmail').textContent = t.labelEmail;
+    document.getElementById('labelNationality').textContent = t.labelNationality;
+    document.getElementById('labelRegion').textContent = t.labelRegion;
+    document.getElementById('labelMessage').textContent = t.labelMessage;
+    document.getElementById('submitBtn').textContent = t.submitBtn;
+    document.getElementById('formNote').textContent = t.formNote;
+    document.getElementById('successTitle').textContent = t.successTitle;
+    document.getElementById('successText').textContent = t.successText;
+    document.getElementById('backLinkText').textContent = t.backLinkText;
+    document.getElementById('backLink').href = t.homeLink;
+    document.getElementById('homeLink').href = t.homeLink;
+    
+    // Update language switch active state
+    if (lang === 'en') {
+      document.getElementById('langEn').classList.add('active');
+      document.getElementById('langJa').href = `?type=${type}&lang=ja`;
+      document.getElementById('langEn').href = `?type=${type}&lang=en`;
+    } else {
+      document.getElementById('langJa').classList.add('active');
+      document.getElementById('langJa').href = `?type=${type}&lang=ja`;
+      document.getElementById('langEn').href = `?type=${type}&lang=en`;
+    }
+    
+    // Show nationality and region for tourists
+    if (type === 'tourist') {
+      document.getElementById('nationalityGroup').style.display = 'block';
+      document.getElementById('regionGroup').style.display = 'block';
+    }
+    
+    // Form submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // In a real implementation, send the form data to a server
+      // For now, just show success message
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('successMessage').classList.add('show');
+      
+      // Track submission
+      if (window.ttTrack) {
+        window.ttTrack('contact_submit', { type: type, lang: lang });
+      }
+    });
+    
+    // Analytics placeholder
+    window.ttTrack = window.ttTrack || function() {};
+  </script>
+</body>
+</html>

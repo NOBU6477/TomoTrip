@@ -4,6 +4,15 @@
 
 TomoTrip (旅友) is a conversion-optimized landing page designed to recruit local guides for a travel companion matching platform. The project features a dual modal system: LINE registration with user type selection (guide/tourist/sponsor) and video selection with type-specific content. The campaign emphasizes first 50 people bonuses, perpetual dividend system for sponsor referrals, and contribution-based rank system. Built with Vite, vanilla JavaScript, and Tailwind CSS (no React/TypeScript), the application emphasizes mobile-first design and high conversion rates.
 
+## Recent Changes (2025-02-04)
+
+- **English LP Created**: `/en/index.html` - Full English landing page for international travelers
+- **Contact Page Created**: `/contact.html` - Multi-language contact form with type parameter support
+  - Supports `?type=tourist|guide|sponsor` and `?lang=en|ja` parameters
+  - Tourist registration includes nationality dropdown and region selection
+- **Language Switcher**: Added to both Japanese and English LP footers
+- **All CTAs Updated**: English LP links to contact page with `lang=en` parameter
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.

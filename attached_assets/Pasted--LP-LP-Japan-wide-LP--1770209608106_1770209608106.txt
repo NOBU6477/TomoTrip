@@ -1,0 +1,182 @@
+目的：
+既存の日本語LPをベースに、英語圏向けの英語LPを新規作成する。
+対象エリアは「沖縄限定」ではなく、日本全国（Japan-wide）とする。
+
+前提：
+- 日本語LPはすでに存在している
+- APP側（contact.html）は lang=en に完全対応済み
+- 英語LPは日本語LPと「構造・導線を同一」にし、文言のみ英語化する
+- LPの役割は「説明＋安心感＋APPへの導線」に限定する
+
+想定構成：
+/            （日本語LP）
+/en/         （英語LP 新規作成）
+
+英語LPの基本ルール：
+- JSロジックは持たせない
+- 問い合わせ・登録はすべて APP（contact.html）へ遷移
+- 英語LPからのリンクは必ず lang=en を付与する
+
+========================
+英語LP 構成・文言（実装用）
+========================
+
+【1】Hero Section（ファーストビュー）
+Headline:
+"Experience Japan with Local Friends"
+
+Sub headline:
+"Discover real Japan through local guides across the country — from major cities to hidden local areas."
+
+CTA:
+- Primary: "Contact Us to Start Your Journey"
+  → /contact.html?type=tourist&lang=en
+- Secondary: "Become a Local Guide"
+  → /contact.html?type=guide&lang=en
+
+--------------------------------------------------
+
+【2】What is TomoTrip?
+Headline:
+"What is TomoTrip?"
+
+Text:
+"TomoTrip is a local guide matching platform connecting travelers with local people across Japan.
+Explore authentic experiences beyond standard tourist routes."
+
+Bullet points:
+- Local guides from all over Japan
+- Flexible, personalized experiences
+- Culture, food, daily life, and hidden spots
+
+CTA:
+"Ask About a Local Guide"
+→ /contact.html?type=tourist&lang=en
+
+--------------------------------------------------
+
+【3】For Travelers
+Headline:
+"For Travelers"
+
+Text:
+"Traveling in Japan and looking for a more authentic experience?
+TomoTrip connects you with local guides nationwide who can show you:"
+
+Bullet points:
+- Hidden local spots and neighborhoods
+- Local food, cafés, and everyday culture
+- Experiences tailored to your interests
+
+Additional text:
+"No fixed tour packages.
+Just real, local experiences — anywhere in Japan."
+
+CTA:
+"Find a Local Guide in Japan"
+→ /contact.html?type=tourist&lang=en
+
+--------------------------------------------------
+
+【4】For Local Guides in Japan
+Headline:
+"For Local Guides in Japan"
+
+Text:
+"Do you live anywhere in Japan and speak English (or another language)?
+Turn your local knowledge into income by guiding travelers."
+
+Bullet points:
+- Available nationwide in Japan
+- No professional guide license required
+- Flexible schedule (part-time OK)
+- Share your everyday life and local culture
+
+CTA:
+"Become a Guide"
+→ /contact.html?type=guide&lang=en
+
+--------------------------------------------------
+
+【5】For Local Businesses & Partners
+Headline:
+"For Local Businesses & Partners"
+
+Text:
+"Own or manage a local business in Japan?
+Partner with TomoTrip to connect with travelers through local guides."
+
+Bullet points:
+- Restaurants, cafés, shops, activities, and more
+- Promotion through local guide recommendations
+- Reach travelers seeking authentic local experiences
+
+Additional text:
+"Available for businesses across Japan."
+
+CTA:
+"Become a Partner"
+→ /contact.html?type=sponsor&lang=en
+
+--------------------------------------------------
+
+【6】Trust & Safety
+Headline:
+"Safe, Simple, and Transparent"
+
+Bullet points:
+- Communication handled through the TomoTrip platform
+- Clear inquiry and response process
+- No direct off-platform contracts
+
+Text:
+"We support travelers, guides, and partners for safe and smooth experiences across Japan."
+
+--------------------------------------------------
+
+【7】FAQ（簡易）
+Q: Is TomoTrip a tour company?
+A: No. TomoTrip connects travelers with local individuals across Japan.
+
+Q: Can I contact in English?
+A: Yes. English inquiries are fully supported.
+
+Q: Are guides available only in major cities?
+A: No. Guides are available nationwide, including local and rural areas.
+
+--------------------------------------------------
+
+【8】Final CTA
+Headline:
+"Ready to Explore Japan Like a Local?"
+
+CTAs:
+- "Contact TomoTrip Now"
+  → /contact.html?type=tourist&lang=en
+- "Become a Local Guide"
+  → /contact.html?type=guide&lang=en
+- "Become a Partner"
+  → /contact.html?type=sponsor&lang=en
+
+--------------------------------------------------
+
+【9】Footer
+Text:
+"Connecting travelers with local friends across Japan"
+"© TomoTrip"
+
+========================
+制約・注意事項
+========================
+- 日本語LPの構造・セクション順は極力維持する
+- デザイン・CSSは既存LPを流用
+- 英語表現はシンプルで非ネイティブにも読みやすく
+- 文言以外の仕様変更は禁止
+- APP側のコードやi18nには触れない
+
+========================
+テスト条件
+========================
+- 英語LPが /en/ で表示される
+- すべてのCTAリンクに lang=en が付与されている
+- contactページで英語表示＆英語自動返信が動作する
