@@ -1842,6 +1842,150 @@ body {
 }
 
 /* ===================================================================
+   Hero CTA Card - High Visibility Conversion Design
+   =================================================================== */
+.hero-cta-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 24px 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: cardFadeIn 0.6s ease-out;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-cta-card__lead {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.hero-cta-card__note {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+/* Main Hero CTA Button - 1.3x larger, high contrast */
+.btn--hero-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 18px 24px;
+  font-size: 17px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00A3C4 0%, #008BA8 100%);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 163, 196, 0.4), 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn--hero-main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn--hero-main:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 24px rgba(0, 163, 196, 0.5), 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn--hero-main:hover::before {
+  left: 100%;
+}
+
+.btn--hero-main:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Secondary Muted Button - De-emphasized video CTA */
+.btn--secondary-muted {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  background: transparent;
+  color: #666;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn--secondary-muted:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: #bbb;
+  color: #444;
+}
+
+.btn--secondary-muted .btn__icon {
+  color: #888;
+}
+
+/* Desktop: Larger card, more padding */
+@media (min-width: 640px) {
+  .hero-cta-card {
+    padding: 32px 36px;
+    max-width: 480px;
+    gap: 20px;
+  }
+  
+  .hero-cta-card__lead {
+    font-size: 17px;
+  }
+  
+  .btn--hero-main {
+    padding: 20px 32px;
+    font-size: 18px;
+    border-radius: 16px;
+  }
+  
+  .btn--secondary-muted {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  
+  .hero-cta-card__note {
+    font-size: 13px;
+  }
+}
+
+/* ===================================================================
    English LP Additional Styles
    =================================================================== */
 
